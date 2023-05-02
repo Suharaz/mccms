@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body>
+  <header class="header">
+    <a class="go-back"><i class="ift-back"></i></a>
+    <span>Register</span>
+  </header>
+  <main class="main register-main under-header">
+    <form id="registerForm" name="register" method="POST">
+      <div class="phone-input">
+        <div class="input-wrap">
+        {if:[mccms_istel] == 0}
+          <input id="regtel" type="text" name="tel" placeholder="Please enter phone number" autocomplete="off" style="width: 7.86667rem;">
+          <img title="Click Refresh verification code" style="position: absolute; right: 1px; top: 1px; width: 89px; height: 92%; cursor: pointer; display: inline-block;border-left: 1px solid #ccc;" class="code_pic" src="[mccms_url_api_code]">
+        {else}
+          <input id="regtel" type="text" name="tel" placeholder="Please enter phone number" autocomplete="off">
+        {end if}
+        </div>
+      </div>
+      <div class="code-input pic-code">
+        <div class="input-wrap">
+        	<input maxlength="4" id="regpcode" type="text" name="pcode" placeholder="Enter  verification code" autocomplete="off">
+        </div>
+		{if:[mccms_istel] == 0}
+        <span class="code-btn pcode-send">get verification code</span>
+        {else}
+        <span class="code-btn">
+			<img title="Click Refresh verification code" style="position: absolute; right: 1px; top: 1px; width: 89px; height: 92%; cursor: pointer; display: inline-block;border-left: 1px solid #ccc;" class="code_pic" src="[mccms_url_api_code]">
+		</span>
+        {end if}
+      </div>
+      <div class="code-input tel-code hide">
+        <div class="input-wrap">
+          <input id="regtcode" type="text" name="tcode" placeholder="Enter mobile phone verification code" autocomplete="off">
+        </div>
+        <span class="code-btn tcode-send" data-status="false">Reacquire</span>
+      </div>
+      <div class="password-input">
+        <div class="input-wrap">
+          <input id="regpass" type="password" name="pass" placeholder="Password (6-16 characters)" autocomplete="off">
+        </div>
+      </div>
+      <button class="register-btn">Register</button>
+    </form>
+    <p class="protocol">Signing up means you agree<a href="javascript:;"> User Agreement</a></p>
+  </main>
+  <div class="help-box hide">
+	  <main class="main cata-main help">
+	    <b>Legal Notice</b>
+<p>
+[mccms_name] is a professional original comics website (hereinafter referred to as this website, [mccms_name] or this website), and provides information and products on this website in accordance with the following terms and conditions. By visiting this website you agree to these terms and conditions. [mccms_name] reserves the right to change these terms and conditions, as well as the products, services, prices and programs mentioned on this website at any time through announcements or system notifications on this website. [mccms_name] reserves the right to take legal action and seek redress in case of violation of the following terms and conditions.
+</p>
+
+	   
+	  </main>
+	</div>
+<script>
+$(function(){
+	user.regpass('reg');
+})
+</script>
+</body>
+</html>

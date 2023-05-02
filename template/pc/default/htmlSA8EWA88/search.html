@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs]
+</head>
+<body class="p-index">
+<div style='display:none;'><img src='[mccms_tpl]images/app_logo.png' /></div>
+[mccms_head]
+<div class="search-page-wr">
+    <div class="search-comic-list">
+        {if:[mccms_pagenum] > 0}
+        <div class="search_head">search results for “<b class="hl">[mccms_key]</b>”</div>
+        <div class="cate-comic-list clearfix">
+        	{mccms:comic table="comic" field="*" page="30" order="id desc"}
+            <div class="common-comic-item">
+                <a class="cover" href="[comic:link]" target="_blank">
+                  <img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]">
+                 
+                  <div class="cover__shadow"></div>
+                </a>
+                <p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+                <p class="comic-update">Latest：<a class="hl" href="[comic:piclink]" target="_blank">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+            </div>
+        	{/mccms:comic}
+        </div>
+        <div id="Pagination"{if2:[mccms_pagejs] < 2} style="display:none;"{end if2}>
+        	<div>
+        		<a class="prev" href="[mccms_pageup]">Prev</a>
+        		<a class="first" href="[mccms_pagefirst]">Next</a>
+        		[mccms_pagenum_10]
+        		<a class="end" href="[mccms_pagelast]">last page</a>
+        		<a class="next" href="[mccms_pagedown]">next page</a>
+        	</div>
+      	</div>
+        {else}
+        <div class="search_head">Unfortunately, the content you searched for has not been found yet. We recommend the following comics for you~</div>
+        <div class="cate-comic-list clearfix">
+            {mccms:comic table="comic" field="*" where="tid=1" limit="12" order="id desc"}
+            <div class="common-comic-item">
+                <a class="cover" href="[comic:link]" target="_blank">
+                  <img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]">
+                  <p class="comic-feature">{if2:'[comic:text]' == ''}[comic:content len=10]{else2}[comic:text]{end if2}</p>
+                  <div class="cover__shadow"></div>
+                </a>
+                <p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+                <p class="comic-update">Latest：<a class="hl" href="[comic:piclink]" target="_blank">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+             
+            </div>
+            {/mccms:comic}
+        </div>
+        {end if}
+    </div>
+</div>
+[mccms_bottom]
+</body>
+</html>

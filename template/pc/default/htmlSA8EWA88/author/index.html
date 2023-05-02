@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_author]
+</head>
+<body class="p-author-index">
+[mccms_head_author]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_author]
+  <script>$('#left-home').addClass('aside-user__dt--selected');</script>
+  <!-- main-content -->
+  <div class="g-au-wrap">
+    <div class="g-au-info">
+      <div class="m-avatar" style="background:none!important;">
+        <a href="[author:userlink]"><img src="[author:pic]" alt="profile picture"></a>
+      </div>
+      <div class="g-ai-box">
+        <p class="name"><a href="[author:userlink]">[author:name]</a></p>
+        <p class="penname">pen name：[author:nichen]</p>
+        <p class="penname">income：<b>[author:rmb]</b> Coin
+          {if:[author:rmb] > 0}
+          <a title="Income Details" class="income" href="[mccms_url_author_income]">details</a><a title="Income withdrawal" href="[mccms_url_author_drawing_add]">withdraw</a>
+          {end if}
+        </p>
+      </div>
+      <a href="[mccms_url_author_comic_add]" class="m-create">Add comics</a>
+    </div>
+    <div class="g-ac-box">
+        <p class="m-title">My manga：[author:count zd=comic,id,uid]<a style="float: right;" href="[mccms_url_author_comic]">More>></a></p>
+        <ul class="m-list clearfix">
+        {mccms:comic table="comic" page="10" order="addtime desc"}
+          <li class="m-ac-item">
+              <a class="cover" href="{if:[comic:yid]==1}[mccms_url_author_chapter_index_[comic:id]]{else}[comic:link]{end if}"><img src="[comic:pic]" alt="[comic:name]"></a>
+              <div class="m-bottom">
+                <p class="name" title="[comic:name]">[comic:name]</p>
+                <div class="m-btns">
+                  <a class="layui-btn layui-btn-xs layui-btn-normal left" href="[mccms_url_author_chapter_index_[comic:id]]">List chap</a>
+                  <a class="layui-btn layui-btn-xs layui-btn-danger right" href="[mccms_url_author_chapter_add_[comic:id]]">Add chap</a>
+                </div>
+              </div>
+             
+          </li>
+        {/mccms:comic}
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</div>
+[mccms_bottom_author]
+</body>
+</html>

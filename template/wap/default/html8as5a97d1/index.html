@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+  <style>
+.allo {
+  background-color: #f2f2f2;
+  padding: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.allo span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.allo span i {
+  margin-right: 10px;
+}
+
+</style>
+
+</head>
+<body class="p-index">
+  <header class="header">
+    <h1 class="logo">
+      <a href="[mccms_path]"><img src="[mccms_tpl]img/logo.png" alt="[mccms_name]"></a>
+    </h1>
+    <a href="[mccms_custom_search]"><i class="ift-nav_search"></i></a>
+  </header>
+  <main class="main p-index-mn under-header">
+    <aside class="float-nav hide">
+      <header class="header">
+        <h1 class="logo">
+          <a href="[mccms_path]"><img src="[mccms_tpl]img/logo.png" alt="[mccms_name]"></a>
+        </h1>
+        <a href="[mccms_custom_search]"><i class="ift-nav_search"></i></a>
+      </header>
+    </aside>
+    <!-- banner 轮播 -->
+    <div class="banner">
+  <h2 class="allo">
+    <span> Trending</span>
+</h2>
+      <div class="swiper-wrapper">
+        {mccms:comic table="comic"  limit="7" order="rhits desc"}
+        <div class="swiper-slide">
+          
+          <a href="[comic:link]">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="background-image: url([mccms_tpl]img/bg_loading_img_3.2.png)"  data-src="[comic:pic]" alt="[comic:name]">
+          </a>
+        </div>
+        {/mccms:comic}
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="banner-bg"></div>
+    </div>
+    <div class="nav-menu">
+      <a class="menu-item" href="[mccms_custom_update]">
+        <img class="item-icon" src="[mccms_tpl]img/pic_index_gx.png" alt="更新">
+      </a>
+      <a class="menu-item" href="[mccms_custom_top]">
+        <img class="item-icon" src="[mccms_tpl]img/pic_index_ph.png" alt="排行">
+      </a>
+     
+    </div>
+   
+   
+   
+   <div class="floor">
+    <a  style="display: block; background-color: #007bff; color: #fff; padding: 10px 20px; border-radius: 7px; text-align: center; text-decoration: none; margin: 30px;">
+  
+  Latest Update
+</a>
+
+
+  <div class="floor-view">
+    <ul class="clearfix">
+      {mccms:comic table="comic" field="*" limit="20" order="addtime desc"}
+      <li class="m-up-item1 clearfix">
+        <div class="cover-wrap">
+          <a href="[comic:link]">
+            <img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="background-image: url([mccms_tpl]img/bg_loading_img_3.4.png)" data-src="[comic:pic]" alt="[comic:name]">
+          </a>
+        </div>
+        <div class="item-info">
+          <a href="[comic:link]">
+            <p class="comic-name" style="font-size: 20px;margin-top: -10px;">[comic:name]</p>
+          </a>
+          {mccms:chapter table="comic_chapter" where="mid=[comic:id]" limit="3" order="xid desc"}
+          <a class="j-chapter-link" href="[chapter:piclink]">
+            <p class="j-chapter-item chapter__item" style="font-size: 15px; background-color: #f2f2f2; padding: 8px;"> [chapter:name]ㅤㅤㅤㅤㅤㅤㅤ[comic:addtime style=time]</p>
+          </a>
+          {/mccms:chapter}
+        </div>
+      </li>
+      {/mccms:comic}
+    </ul>
+  </div>
+</div>
+<a href="[mccms_custom_update]" style="display: block; background-color: #007bff; color: #fff; padding: 10px 20px; border-radius: 5px; text-align: center; text-decoration: none;">
+  <span class="char-img"></span>
+ Load More
+</a>
+
+  </main>
+<footer class="footer clearfix">
+  <span class="char-img"></span>
+</footer>
+[mccms_bottom]
+<script>
+$(function(){
+  $('#nav-index').addClass('z-active');
+})
+</script>
+</body>
+</html>

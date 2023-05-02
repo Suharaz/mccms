@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body class="p-order-vip">
+  <header class="header">
+    <a class="back-btn" href="javascript:history.back();"><i class="ift-back"></i></a>
+    <span>[mccms_name] VIP</span>
+  </header>
+  <main class="main under-header">
+    <div class="account-info">
+      <div class="avatar">
+        <img src="[user:pic]">
+      </div>
+      <p class="user-name">[user:nichen]{if:[user:vip] > 0} <i class="icon"></i>{end if}</p>
+        <p class="is-vip">validity period：{if:[user:vip] > 0}[user:viptime style=Y-m-d]{else}experience has expired{end if}</p>
+    </div>
+    <div class="gap-12"></div>
+    <div class="vip-box clearfix">
+      <h3 class="head">[mccms_name]VIP</h3>
+      <ul class="first-charge">
+        <li class="pay-item vip select" data-day="30" data-cion="[mccms_zhuan_[mccms_vip_rmb_1]_3_[mccms_rmbtocion]]">
+          <p class="title">Monthly VIP</p>
+          <p class="price">$[mccms_vip_rmb_1]</p>
+          <p class="detail"><del>$[mccms_zhuan_[mccms_vip_rmb_1]_3_2]</del></p>
+          <p class="gift"><i class="icon-zeng" ></i><span>Valid for 30 days</span></p>
+        </li>
+        <li class="pay-item vip" data-day="90" data-cion="[mccms_zhuan_[mccms_vip_rmb_2]_3_[mccms_rmbtocion]]">
+          <p class="title">Quarterly VIP</p>
+          <p class="price">$[mccms_vip_rmb_2]</p>
+          <p class="detail"><del>$[mccms_zhuan_[mccms_vip_rmb_2]_3_2]</del></p>
+          <p class="gift"><i class="icon-zeng"></i><span>Valid for 90 days</span></p>
+          <span class="flow-tip" style="background-image: url([mccms_tpl]img/bg_vip_yhtxt.png);">Most popular</span>
+        </li>
+        <li class="pay-item vip" data-day="180" data-cion="[mccms_zhuan_[mccms_vip_rmb_3]_3_[mccms_rmbtocion]]">
+          <p class="title">half year VIP</p>
+          <p class="price">$[mccms_vip_rmb_3]</p>
+          <p class="detail"><del>$[mccms_zhuan_[mccms_vip_rmb_3]_3_2]</del></p>
+          <p class="gift"><i class="icon-zeng" ></i><span>Valid for 180 days</span></p>
+        </li>
+        <li class="pay-item vip" data-day="365" data-cion="[mccms_zhuan_[mccms_vip_rmb_4]_3_[mccms_rmbtocion]]">
+          <p class="title">Annual VIP</p>
+          <p class="price">$[mccms_vip_rmb_4]</p>
+          <p class="detail"><del>$[mccms_zhuan_[mccms_vip_rmb_4]_3_2]</del></p>
+          <p class="gift"><i class="icon-zeng" ></i><span>Valid for 365 days</span></p>
+          
+        </li>
+      </ul>
+    </div>
+    <div class="gap-12"></div>
+    <div class="pay-func">
+      <div class="title">
+        <span>Payment Method</span>
+        <span class="has">Balance：<b>[user:cion] [mccms_cionname]</b></span>
+      </div>
+      <ul class="item-box">
+        <li class="func-item J_buy_vip" data-pay="cion">
+          <i class="i-order-pay gold"></i>
+          <p class="txt">Buy by [mccms_cionname]</p>
+        </li>
+        
+      </ul>
+    </div>
+  </main>
+<script>
+$(function(){
+  user.payvip('[mccms_cionname]');
+});
+</script>
+</body>
+</html>

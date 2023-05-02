@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body class="p-order-gold">
+  <header class="header">
+    <a class="back-btn" href="javascript:history.back();"><i class="ift-back"></i></a>
+    <span>Buy Power</span>
+  </header>
+  <main class="main under-header">
+    <div class="pay-user-info">
+      <span class="user-name">[user:nichen]</span>
+      <span class="user-gold">[mccms_cionname]：<b>[user:cion]</b></span>
+      <span class="user-ticket">Balance：<b>[user:ticket] Power</b></span>
+    </div>
+    <div class="ticket-box">
+      <div class="ticket-itm pay-item " data-cion="[mccms_zhuan_100_3_[mccms_rmbtocion]]" data-num="100">
+        <span>100 Power</span>
+        <span class="ticket-btn">
+            100 $
+        </span>
+      </div>
+      <div class="ticket-itm pay-item " data-cion="[mccms_zhuan_50_3_[mccms_rmbtocion]]" data-num="50">
+        <span>50 Power</span>
+        <span class="ticket-btn">
+            50 $
+        </span>
+      </div>
+      <div class="ticket-itm pay-item " data-cion="[mccms_zhuan_20_3_[mccms_rmbtocion]]" data-num="20">
+        <span>20 Power</span>
+        <span class="ticket-btn">
+            20 $
+        </span>
+      </div>
+      <div class="ticket-itm pay-item " data-cion="[mccms_zhuan_10_3_[mccms_rmbtocion]]" data-num="10">
+        <span>10 Power</span>
+        <span class="ticket-btn">
+            10 $
+        </span>
+      </div>
+      <div class="ticket-itm pay-item " data-cion="[mccms_zhuan_5_3_[mccms_rmbtocion]]" data-num="5">
+        <span>5 Power</span>
+        <span class="ticket-btn">
+            5 $
+        </span>
+      </div>
+      <div class="ticket-itm pay-item select" data-cion="[mccms_zhuan_1_3_[mccms_rmbtocion]]" data-num="10">
+        <span>1 Power</span>
+        <span class="ticket-btn">
+            1 $
+        </span>
+      </div>
+    </div>
+    <div class="pay-func">
+      <div class="title">
+        <span>Payment method</span>
+      </div>
+      <ul class="item-box">
+        <li class="func-item J_buy_ticket" data-pay="cion">
+          <i class="i-order-pay gold"></i>
+          <p class="txt">[mccms_cionname]</p>
+        </li>
+       
+      </ul>
+    </div>
+   
+  </main>
+<script>
+$(function(){
+  user.payticket('[mccms_cionname]');
+});
+</script>
+</body>
+</html>

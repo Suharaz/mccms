@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Monthly Ranking - [mccms_name]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body class="p-top">
+  <header class="header">
+    <a class="go-back" href="[mccms_path]"><i class="ift-back"></i></a>
+    <span>Monthly Ranking</span>
+    <a href="[mccms_custom_search]"><i class="ift-nav_search"></i></a>
+  </header>
+  <main class="main under-header" data-name="popular" data-type="1">
+    <div class="rank-nav">
+      <ul class="clearfix">
+        <li class="rank-nav-item">
+          <a href="[mccms_custom_top]">Popular Ranking </a>
+        </li>
+        <li class="rank-nav-item active">
+          <a href="[mccms_custom_ticket]">Power Ranking</a>
+        </li>
+        <li class="rank-nav-item">
+          <a href="[mccms_custom_fav]">Collect Ranking</a>
+        </li>
+        <li class="rank-nav-item">
+          <a href="[mccms_custom_day]">Daily Ranking</a>
+        </li>
+        <li class="rank-nav-item">
+          <a href="[mccms_custom_week]">Weekly Ranking</a>
+        </li>
+        <li class="rank-nav-item">
+          <a href="[mccms_custom_month]">Monthly Ranking</a>
+        </li>
+      </ul>
+    </div>
+    <div class="rank-list">
+      {mccms:comic table="comic" limit="100" order="ticket desc"}
+      <div class="rank-item clearfix">
+        <a href="[comic:link]">
+          <img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="background-image: url([mccms_tpl]img/bg_loading_img_3.4.png)" alt="[comic:name]" data-src="[comic:pic]">
+        </a>
+        <div class="comic-item-info">
+          <a href="[comic:link]">
+            <p class="comic-name">[comic:name]</p>
+          
+            <p class="comic-author">{if:'[comic:content]'==''}[comic:content len=70]{else}[comic:content len=130]{end if}</p></a>
+          <p class="comic-click-count">Power：[comic:ticket wan=1]</p></div>
+          <div class="{if:[comic:i]>3}rank-tag{else}rank-top-tag rank-[comic:i]{end if}">{if:[comic:i]>3}[comic:i]{end if}</div>
+        </div>
+      {/mccms:comic}
+    </div>
+  </main>
+</body>
+</html>

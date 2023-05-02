@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body>
+<header class="header">
+    <a class="back-btn" href="javascript:history.back();"><i class="ift-back"></i></a>
+    <span>My account</span>
+  </header>
+  <main class="main under-header">
+    <div class="p-acc-box">
+      <div class="user-head">
+        <img class="avatar" src="[user:pic]">
+        <span class="name">[user:nichen]</span>
+      </div>
+      <div class="itm">
+        <i class="i-acc-yb"></i>
+        <p class="title">[mccms_cionname] balance</p>
+        <p class="num">[user:cion]</p>
+        <p class="des">Used for donate, purchasing paid chapters, and purchasing membership VIPs</p>
+        <a class="btn btn--link" href="[mccms_url_user_pay_index_cion]">Buy</a>
+      </div>
+      <div class="itm">
+        <i class="i-acc-yp"></i>
+        <p class="title">Power</p>
+        <p class="num">[user:ticket]</p>
+        <p class="des">Vote for your favorite manga</p>
+        <a class="btn btn--link" href="[mccms_url_user_pay_index_ticket]">Buy</a>
+      </div>
+      <div class="itm">
+        <i class="i-acc-vip"></i>
+        <a class="btn btn--link" href="[mccms_url_user_pay_index_vip]">Renew VIP</a>
+        <p class="title vip">Expire date：{if:[user:vip] == 0} has expired{else}[user:viptime style=Y-m-d]{end if}</p> 
+        <p class="des">VIP privileges, many surprises~</p>
+      </div>
+    
+    </div>
+    <div class="p-acc-tags">
+      <h3 class="title">VIP privileges</h3>
+      <ul class="tag-lst clearfix">
+        <li class="tag-itm">
+          <i class="i-acc-itm item1"></i>
+          <p>Comics for VIP</p>
+          <p>read for free</p>
+        </li>
+        <li class="tag-itm">
+          <i class="i-acc-itm item2"></i>
+          <p>paid chapter</p>
+          <p>20% discount</p>
+        </li>
+        <li class="tag-itm">
+          <i class="i-acc-itm item3"></i>
+          <p>monthly gift</p>
+          <p>Power free every month</p>
+        </li>
+        <li class="tag-itm">
+          <i class="i-acc-itm item4"></i>
+          <p>More exciting privileges</p>
+        </li>
+      </ul>
+    </div>
+  </main>
+<script>
+$('.btn-card').click(function(){
+  var card = $('#card').val();
+  if(card == ''){
+    mccms.msg('Please enter the password',1);
+  }else{
+    $.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/pay/save?callback=?', {type:'card',card:card}, function(res) {
+      mccms.msg(res.msg,1);
+      if(res.code == 1){
+        setTimeout(function() {
+          window.location.reload();
+        },1000);
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>

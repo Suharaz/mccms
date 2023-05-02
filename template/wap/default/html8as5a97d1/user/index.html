@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body class="p-user-index">
+  <header class="my-header">
+    <div class="avatar">
+      <a href="[mccms_url_user]">
+        <img src="[user:pic]">
+      </a>
+    </div>
+    <p class="user-name">
+      [user:nichen]
+      {if:[user:vip] > 0}<i class="icon icon-type-2"></i>{end if}
+    </p>
+    <p class="is-vip">VIP expires：{if:[user:vip] > 0}[user:viptime style=Y-m-d]{else}Vip has expired{end if}</p>
+  </header>
+  <div class="other-item m-0">
+    <a href="[mccms_url_user_pay]">
+      <i class="i-my-account"></i>
+      <span>My account</span>
+      <span class="tip">Buy Coin</span>
+      <i class="ift-left_come"></i>
+    </a>
+  </div>
+  <main class="main my-main">
+    <div class="user-fund-info">
+      <div class="money">
+        <i class="icon-money"></i>
+        <span class="num">[user:cion] Coin</span>
+      </div>
+      <div class="line"></div>
+      <div class="ticket">
+        <i class="icon-ticket"></i>
+        <span class="num">[user:ticket] Power</span>
+      </div>
+    </div>
+    <div class="my-other-list">
+      <ul>
+        <li class="other-item">
+          <a href="[mccms_url_user_buy_comic]">
+            <i class="i-my-buy"></i>
+            <span>My purchases</span>
+            <i class="ift-left_come"></i>
+          </a>
+          <div class="my-payed clearfix">
+          {mccms:buy table="comic_buy" field="mid,count(id) as count" where="uid=[user_id]" limit="2" group="mid" order="mid desc"}
+          	{mccms:comic table="comic" where="id=[buy:mid]" limit="1"}
+            <div class="payed-itm">
+              <a href="[comic:link]">
+                <img class="cover" src="[comic:pic]" alt="">
+                <p class="name">[comic:name]</p>
+                <p class="read-at">[comic:author]</p>
+                <p class="update-at">Update to [comic:zdy zd=comic_chapter,name,id,mid]</p>
+                
+              </a>
+            </div>
+            {/mccms:comic}
+          {/mccms:buy}
+          </div>
+        </li>
+        <li class="other-item">
+          <a href="[mccms_url_user_info]">
+            <i class="i-my-feed"></i>
+            <span>Edit account</span>
+            <i class="ift-left_come"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <button id="logout" class="logout">sign out</button>
+ 	</main>
+[mccms_bottom]
+<script>
+$(function(){
+	$('#nav-user').addClass('z-active');
+	//user.regpass('pass');
+})
+</script>
+</body>
+</html>

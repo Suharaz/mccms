@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Latest - [mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs]
+</head>
+<body class="p-update">
+<div style='display:none;'><img src='[mccms_tpl]images/app_logo.png' /></div>
+[mccms_head]
+<script>$('#nav_update').addClass('active');</script>
+<div class="update-page-wr">
+    <div class="update__head">
+        <i class="iconfont icon-ic_newlist_title"></i>
+        <span><b class="day">Latest Updates</b> </span>
+        
+    </div>
+    {mccms:comic table="comic" field="*" limit="10" order="addtime desc"}
+        	<div class="in-comic--type-b">
+	            <div class="cover">
+	            	<a href="[comic:link]" target="_blank"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+	            
+	            </div>
+	             <p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+	            {mccms:chapter table="comic_chapter" where="mid=[comic:id]" limit="2" order="xid desc"}
+                    <li class="j-chapter-item chapter__item chapter-[chapter:id]">
+                        <a class="j-chapter-link" href="[chapter:piclink]">
+                        
+                         {if:'[chapter:vip]'>'0'}<i class="vip-tag iconfont icon-ic_readlist_vip1"></i>{end if}
+                            {if:'[chapter:cion]'>'0'}<i class="lock iconfont">&#xe66e;</i>{end if}
+                            {if:'[chapter:addtime style=Y-m-d]'=='[mccms_date]'}<i class="j-update-icon icon-has-update"></i>{end if}
+                            [chapter:name]ㅤㅤㅤ[comic:addtime style=time]
+                        </a>
+                    </li>
+                {/mccms:chapter}
+	           
+	           
+          	</div>
+        {if:[comic:i]==5}</div><div class="in-sec__box clearfix fl mt-20">{end if}
+		{/mccms:comic}
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs]
+<link rel="stylesheet" href="[mccms_tpl]css/login.css">
+</head>
+<body class="page-login fixed-footer">
+[mccms_head]
+<div class="main-content">
+    <div class="container--response">
+        <div class="login-box">
+            <div class="login-pic">
+                <img src="[mccms_tpl]images/pic_loginpage_img.png" />
+            </div>
+            <!-- 登录框 -->
+            <div class="dialog-login">
+                <div class="dialog-login_content clearfix">
+                    <div class="tab-content">
+                        <!-- 注册 -->
+                        <div class="j-tab-item tab-item active">
+                            <div class="dialog-login_form">
+                                <div class="form-title">
+                                    <h3>Register</h3>
+                                    <a href="[mccms_url_user_login]" class="j-dialog-login-mode">Already have an account&gt;&gt;</a>
+                                </div>
+                                <div class="form-item">
+                                    <div class="input-block" style="position: relative;">
+                                        <input id="regtel" type="text" name="tel" placeholder="Enter a  mobile phone number" maxlength="11" autocomplete="off">
+                                        {if:[mccms_istel] == 0}
+                                        <img title="Click Refresh verification code" style="position: absolute; right: 1px; top: 1px; width: 99px; height: 92%; cursor: pointer; display: inline-block;" class="code_pic hide" src="[mccms_url_api_code]">
+                                        {end if}
+                                    </div>
+                                </div>
+                                <div class="form-item pic-code">
+                                    <div class="input-block--inline">
+                                        <input maxlength="4" id="regpcode" type="text" name="pcode" placeholder="Enter  verification code" autocomplete="off">
+                                        {if:[mccms_istel] == 1}
+                                        <img title="Click Refresh verification code" style="position: absolute;right: 0;top: 0;width: 99px;height: 36px;cursor: pointer;display: inline-block;border: 1px solid #dddddd;" class="code_pic hide" src="[mccms_url_api_code]">
+                                        {else}
+                                        <div class="j-sms-btn sms-btn pcode-send"></div>
+                                        {end if}
+                                    </div>
+                                </div>
+                                <div class="form-item tel-code hide">
+                                    <div class="input-block--inline">
+                                        <input id="regtcode" type="text" name="tcode" placeholder="Enter mobile phone verification code" autocomplete="off">
+                                        <div class="j-sms-btn sms-btn tcode-send" data-status="false">get again</div></div>
+                                </div>
+                                <div class="form-item">
+                                    <div class="input-block">
+                                        <input id="regpass" type="password" name="pass" placeholder="Password (6-16 characters)" autocomplete="off"></div>
+                                </div>
+                                <div class="form-item">
+                                    <div class="j-register-submit submit-btn disabled-select">Register an account</div>
+                                </div>
+                                <div class="tip-protocol">
+                                    Registration means reading and agreeing
+                                    <a href="[mccms_custom_userxieyi]" target="_blank" class="j-dialog-login-protocol">"User Services Agreement"</a>
+                                    and
+                                    <a href="[mccms_custom_privacy]" target="_blank" class="j-dialog-login-protocol">"Privacy Agreement"</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 第三方登录 -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(function(){
+    var time = 60;
+    var errhtml='<div class="j-verify-err"><i class="iconfont icon-ic-safe-off"></i><span>[msg]</span></div>';
+    //发送短信验证码
+    $('.j-sms-btn').click(function(){
+        var tel = $('#regtel').val();
+        if(!(/^1[3456789]\d{9}$/.test(tel))){
+            var err = errhtml.replace('[msg]','Master, please enter the correct phone number~');
+            $('#regtel').parent().parent().append(err);
+            $('#regtel').focus();
+            return false;
+        }
+    });
+    //点击输入框删掉错误提示
+    $('.dialog-login_form input').click(function(){
+        $('.j-verify-err').remove();
+    });
+    //发送验证码
+    $('.pcode-send').click(function(){
+        var tel = $('#regtel').val();
+        var pcode = $('#regpcode').val();
+        if(!(/^1[3456789]\d{9}$/.test(tel))){
+            var err = errhtml.replace('[msg]','Master, please enter the correct mobile number~');
+            $('#regtel').parent().parent().append(err);
+            $('#regtel').focus();
+            return false;
+        }
+        if(pcode == ''){
+            var err = errhtml.replace('[msg]','Please enter the graphic verification code above~');
+            $('#regpcode').parent().parent().append(err);
+            $('#regpcode').focus();
+            return false;
+        }
+        //发送
+        $.post(Mcpath.web+'index.php/api/code/tel_send/reg', {tel:tel,code:pcode}, function(res) {
+            if(res.code == 1){
+                $('.pic-code,.code_pic').hide();
+                $('.tel-code').show();
+                tindex = setInterval(function(){
+                    time--;
+                    if(time == 0){
+                        time = 60;
+                        window.clearInterval(tindex);
+                        $('.tcode-send').removeClass('disabled').attr('data-status','false').html('Resend');
+                    }else{
+                        $('.tcode-send').addClass('disabled').attr('data-status','true').html(time+'Resend after s');
+                    }
+                },1000);
+            }else{
+                mccms.msg(res.msg);
+            }
+        },'json');
+    });
+    //再次发送验证码
+    $('.tcode-send').click(function(){
+        var init = $(this).attr('data-status');
+        if(init == 'false'){
+            $('#regpcode').val('');
+            $('.pic-code').show();
+            $('.tel-code').hide();
+            $('.code_pic').attr('src',Mcpath.web+'index.php/api/code').show();
+        }
+    });
+    //注册提交
+    $('.j-register-submit').click(function(){
+        var tel = $('#regtel').val();
+        var pcode = $('#regpcode').val();
+        var code = $('#regtcode').val();
+        var pass = $('#regpass').val();
+        if(!(/^1[3456789]\d{9}$/.test(tel))){
+            var err = errhtml.replace('[msg]','Master, please enter the correct mobile number~');
+            $('#regtel').parent().parent().append(err);
+            $('#regtel').focus();
+            return false;
+        }
+        if(Mcpath.istel == 0 && code == ''){
+            if($(".code_pic").css("display") == 'none'){
+                var err = errhtml.replace('[msg]','Master, please enter the phone verification code~');
+                $('#regtcode').parent().parent().append(err);
+                $('#regtcode').focus();
+            }else{
+                var err = errhtml.replace('[msg]','Master, please get SMS verification code~');
+                $('#regpcode').parent().parent().append(err);
+                $('#regpcode').focus();
+            }
+            return false;
+        }
+        if(Mcpath.istel == 1 && pcode == ''){
+            var err = errhtml.replace('[msg]','Master, please enter the graphic verification code on the right~');
+            $('#regpcode').parent().parent().append(err);
+            $('#regpcode').focus();
+            return false;
+        }
+        if(!(/^[\S]{6,16}$/.test(pass))){
+            var err = errhtml.replace('[msg]','Password must be 6 to 16 characters, and no spaces~');
+            $('#regpass').parent().parent().append(err);
+            $('#regpass').focus();
+            return false;
+        }
+        var index = mccms.layer.load();
+        $.post(Mcpath.web+'index.php/api/user/reg', {tel:tel,pass:pass,code:code,pcode:pcode}, function(res) {
+            mccms.layer.close(index);
+            if(res.code == 1){
+                setTimeout(function() {
+                    window.location.href = res.url;
+                }, 1000);
+                mccms.msg(res.msg,1);
+            }else{
+                mccms.msg(res.msg);
+            }
+        },'json');
+    });
+    //监听回车提交登陆
+    $(document).keyup(function(e){
+        if(e.keyCode ==13){
+            $('.j-register-submit').click();
+        }
+    });
+    //刷新验证码
+    $('.code_pic').click(function(){
+        $(this).attr('src',Mcpath.web+'index.php/api/code?t='+Math.random());
+    });
+});
+</script>
+</body>
+</html>

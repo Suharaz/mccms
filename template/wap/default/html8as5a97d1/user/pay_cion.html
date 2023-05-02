@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+  <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      form {
+        display: inline-block;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      }
+      input[type="text"] {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-bottom: 10px;
+      }
+      input[type="submit"] {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: #0070ba;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #005fa1;
+      }
+    </style>
+</head>
+<body class="p-order-gold">
+    
+  <header class="header">
+    <a class="back-btn" href="javascript:history.back();"><i class="ift-back"></i></a>
+    <span>Buy [mccms_cionname]</span>
+  </header>
+  <main class="main under-header">
+    <div class="pay-user-info">
+      <span class="user-name">[user:nichen]</span>
+      <span class="user-gold">Balance：<b>[user:cion]</b></span>
+    </div>
+    <div class="gold-box">
+      <ul class="clearfix cionlist">
+        <li class="pay-item gold" data-rmb="100">
+          <i class="i-order-gold yb-100"></i>
+          <p class="num">[mccms_zhuan_100_3_[mccms_rmbtocion]][mccms_cionname]</p>
+          <p class="price">100$</p>
+           
+        </li>
+        <li class="pay-item gold" data-rmb="50">
+          <i class="i-order-gold yb-50"></i>
+          <p class="num">[mccms_zhuan_50_3_[mccms_rmbtocion]][mccms_cionname]</p>
+          <p class="price">50$</p>
+           
+        </li>
+        <li class="pay-item gold" data-rmb="20">
+          <i class="i-order-gold yb-20"></i>
+          <p class="num">[mccms_zhuan_20_3_[mccms_rmbtocion]][mccms_cionname]</p>
+          <p class="price">20$</p>
+           
+        </li>
+        <li class="pay-item gold" data-rmb="10">
+          <i class="i-order-gold yb-10"></i>
+          <p class="num">[mccms_zhuan_10_3_[mccms_rmbtocion]][mccms_cionname]</p>
+          <p class="price">10$</p>
+           
+        </li>
+        <li class="pay-item gold" data-rmb="5">
+          <i class="i-order-gold yb-5"></i>
+          <p class="num">[mccms_zhuan_5_3_[mccms_rmbtocion]][mccms_cionname]</p>
+          <p class="price">5$</p>
+           
+        </li>
+        <li class="pay-item gold select" data-rmb="1">
+          <i class="i-order-gold yb-1"></i>
+          <p class="num">[mccms_zhuan_1_3_[mccms_rmbtocion]][mccms_cionname]</p>
+          <p class="price">1$</p>
+         
+        </li>
+      </ul>
+    </div>
+    <div class="pay-func">
+      <div class="title">
+        <span>Payment method</span>
+      </div>
+      <ul class="item-box">
+    
+       
+      
+       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <label>Product Name:</label><br>
+      <input type="text" name="item_name" placeholder="Enter your userame"><br>
+      <label>Amount:</label><br>
+      <input type="text" name="amount" placeholder="Enter the amount($) " ><br>
+      <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="business" value="yuusepai@gmail.com">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="return" value="http://www.yourwebsite.com/thankyou.html">
+      <input type="submit" value="Buy Now">
+    </form>
+      </ul>
+      
+    </div>
+  </main>
+<script>
+$(function(){
+  user.paycion();
+});
+</script>
+</body>
+</html>

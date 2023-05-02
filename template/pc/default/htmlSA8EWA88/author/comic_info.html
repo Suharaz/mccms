@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_author]
+</head>
+<body class="p-comic-info">
+[mccms_head_author]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_author]
+  <script>$('#left-comic').addClass('aside-user--selected');</script>
+  <!-- main-content -->
+  <div class="user-right">
+    <div class="user-right-top">
+      <h3>[comic:name]</h3>
+      <a href="[mccms_url_author_comic]" class="to-mycomic">back to my work ></a>
+    </div>
+    <div class="comic-box">
+      <div class="chapter-nav clearfix">
+        <a href="[mccms_url_author_chapter_index_[comic_id]]" >chapter</a>
+        <a href="[mccms_url_author_comic_info_[comic_id]]" class="on">Manga Info</a>
+      </div>
+      <form class="input-box layui-form">
+        <div class="edit-box clearfix">
+          <div class="comic-cover">
+            <div class="y-cover">
+              <img src="[comic:pic]"/>
+              <span class="upload-btn J_cover_y">upload cover</span>
+            </div>
+            <div class="x-cover">
+              <img src="[comic:picx]" />
+              <span class="upload-btn J_cover_x">upload cover</span>
+            </div>
+          </div>
+          <div class="comic-info">
+            <div class="layui-form-item"></div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">comic name：</label>
+              <div class="layui-input-block">
+                <input type="text" name="name" required lay-verify="required" placeholder="comic name" autocomplete="off" class="layui-input" value="[comic:name]">
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">Artist：</label>
+              <div class="layui-input-block">
+                <input type="text" name="pic_author" placeholder="can be left blank" autocomplete="off" class="layui-input" value="[comic:pic_author]">
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">Author：</label>
+              <div class="layui-input-block">
+                <input type="text" name="txt_author" placeholder="manga author" autocomplete="off" class="layui-input" value="[comic:txt_author]">
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">Class：</label>
+              <div class="layui-input-block">
+                <select name="cid">
+                  {mccms:class table="class" where="fid=0" order="xid asc"}
+                  <option value="[class:id]"{if:[class:id]==[comic_cid]} selected{end if}>[class:name]</option>
+                    {mccms:class2 table="class" where="fid=[class:id]" order="xid asc"}
+                    <option value="[class2:id]"{if:[class2:id]==[comic_cid]} selected{end if}> |----[class2:name]</option>
+                    {/mccms:class2}
+                  {/mccms:class}
+                </select>
+              </div>
+            </div>
+            {mccms:type table="type" where="id in(1,3,6)" order="xid asc"}
+            <div class="layui-form-item">
+              <label class="layui-form-label">[type:name]：</label>
+              <div class="layui-input-block">
+                <ul>
+                  <li class="ticai-list">
+                    {mccms:type2 table="type" where="fid=[type:id]" order="xid asc"}
+                    {if:[type:cid]==0}
+                    <input class="type-[type2:zd]" lay-filter="theme" type="checkbox" name="type[[type2:zd]][]" title="[type2:name]" lay-skin="primary" value="[type2:id]"{if2:get_is_type([comic_id],[type2:id]) == true} checked{end if2}>
+                    {else}
+                    <input class="type-[type2:zd]" type="radio" name="type[[type2:zd]][]" value="[type2:id]" title="[type2:name]"{if2:get_is_type([comic_id],[type2:id]) == true} checked{end if2}>
+                    {end if}
+                    {/mccms:type2}
+                  </li>
+                </ul>
+              </div>
+            </div>
+            {/mccms:type}
+            <div class="layui-form-item">
+              <label class="layui-form-label">Status：</label>
+              <div class="layui-input-block">
+                <input type="radio" name="serialize" value="连载" title="OnGoing"{if:'连载'=='[comic_serialize]'} checked{end if}>
+                <input type="radio" name="serialize" value="完结" title="End"{if:'完结'=='[comic_serialize]'} checked{end if}>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">Short introduction：</label>
+              <div class="layui-input-block">
+                <input type="text" name="text" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="[comic_text]">
+              </div>
+            </div>
+
+            <div class="layui-form-item layui-form-text">
+              <label class="layui-form-label">Synopsis ：</label>
+              <div class="layui-input-block">
+                <textarea name="content" required placeholder="summary of the manga" class="layui-textarea">[comic_content]</textarea>
+              </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+              <label class="layui-form-label">Notification：</label>
+              <div class="layui-input-block">
+                <textarea name="notice" placeholder="What message do you want to convey to your readers? example manga release schedule！！！" class="layui-textarea">[comic_notice]</textarea>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label"></label>
+              <div class="layui-input-block">
+                <button lay-submit lay-filter="stepOne" class="submit layui-btn">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- 弹窗 -->
+  <div class="cover-dialog-y hide">
+    <div class="y-wrap clearfix">
+      <p class="title">vertical cover image</p>
+      <p class="tip">Only JPG and PNG formats are supported, and the file size is less than 5M. The recommended picture size is: 600*800 (3:4）</p>
+      <div class="cover-wrap-y">
+        <img src="" class="cover" id="Cover-y">
+        <label class="btn" for="yInput">
+          <input type="file" name="image" id="yInput" onchange="loadImageY()" style="cursor:pointer;">
+          <i class="ic-upimg"></i><span>Choose the picture</span>
+        </label>
+      </div>
+      <div class="gap"></div>
+      <div class="preview-box">
+        <p class="txt">Effect preview</p>
+        <p class="tip">The picture you upload will automatically generate the following size, please pay attention to whether the small size picture is clear</p>
+        <div class="preview1 preview-y">
+          <img src="[comic_pic]"/>
+        </div>
+        <div class="preview2 preview-y">
+          <img src="[comic_pic]"/>
+        </div>
+      </div>
+      <div class="handle-box">
+        <span class="confirm J_confirm_y">Save</span>
+        <span class="cancel">Cancel</span>
+      </div>
+    </div>
+  </div>
+  <div class="cover-dialog-x hide">
+    <div class="x-wrap clearfix">
+      <p class="title">landscape cover image</p>
+      <p class="tip">Only JPG and PNG formats are supported, and the file size is less than 5M. The recommended picture size is: 640*360 (16:9）</p>
+      <div class="cover-wrap-x">
+        <img src="" id="Cover-x">
+        <label class="btn" for="xInput">
+          <input type="file" name="image" id="xInput" onchange="loadImageX()" style="cursor:pointer;">
+          <i class="ic-upimg"></i><span>Choose the picture</span>
+        </label>
+      </div>
+      <div class="gap"></div>
+      <div class="preview-box">
+        <p class="txt">Effect preview</p>
+        <p class="tip">Please pay attention to whether the small size of the picture is clear</p>
+        <div class="preview preview-x">
+          <img src="[comic_picx]" />
+        </div>
+      </div>
+      <div class="handle-box">
+        <span class="confirm J_confirm_x">Save</span>
+        <span class="cancel">Cancel</span>
+      </div>
+    </div>
+  </div>
+</div>
+[mccms_bottom_author]
+<link rel="stylesheet" href="[mccms_tpl]css/cropper.min.css">
+<script src="[mccms_tpl]js/cropper.min.js"></script>
+<script type="text/javascript">
+var readerY = new FileReader();
+var readerX = new FileReader();
+var loadImageY = function() {
+  var obj = document.getElementById('yInput')
+  var oFile = obj.files[0]
+  readerY.readAsDataURL(oFile)
+}
+var loadImageX = function() {
+  var obj = document.getElementById('xInput')
+  var oFile = obj.files[0]
+  readerX.readAsDataURL(oFile)
+}
+$(function(){
+  comic_edit([comic_id]);
+})
+</script>
+</body>
+</html>

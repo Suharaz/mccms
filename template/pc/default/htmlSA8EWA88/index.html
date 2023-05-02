@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+
+ [mccms_packs_book]
+ 
+    <link rel="stylesheet" href="[mccms_tpl]book/css/index.css">
+    [mccms_packs]
+    
+</head>
+
+<body >
+<div style='display:none;'><img src='[mccms_tpl]images/app_logo.png' /></div>
+[mccms_head]
+<script>$('#nav_index').addClass('active');</script>
+    <div class="story-banner">
+        <div class="banner-wrap clearfix">
+            <div class="banner-slide-wrapper">
+                <div class="slide-bg"></div>
+                <div class="slide-prev mccms-icon">&#xe6aa;</div>
+                <div class="slide-next mccms-icon">&#xe6a7;</div>
+                <div class="banner-slider">
+                    {mccms:comic table="comic" field="*" where="tid>0" limit="20" order="rhits desc"}
+                    <div class="banner-slide__item" data-id="[book:id]">
+                        <a href="[comic:link]">
+                            <img class="comic-cover lazy" src="[comic:pic]" data-src="[comic:pic]" alt="[comic:name]">
+                            <div class="comic-intro">
+                                <div class="comic-name">[comic:name]</div>
+                                <div class="comic-hot">[comic:zdy zd=comic_chapter,name,id,mid] </div>
+                            </div>
+                        </a>
+                        <div class="banner-slide__item-detail hide">
+                            <div class="comic-name">
+                               
+                            </div>
+                            <div class="comic-tags clearfix">
+                               
+                                <div class="tag">[comic:hits wan=1] View</div>
+                            </div>
+                            <div class="comic-feature">[comic:content]</div>
+                            <div class="comic-btns">
+                                <center><a href="[comic:link]" class="read-btn">Read now</a></center>
+                              
+                            </div>
+                        </div>
+                    </div>
+                    {/mccms:comic}
+                </div>
+            </div>
+            <div class="banner-recommand">
+                <div class="banner-recommand__item">
+                    <a href="/" target="_blank">
+                        <img class="comic-cover lazy" src="[mccms_tpl]book/images/ad1.jpg" alt="AD1">
+                    </a>
+                </div>
+                <div class="banner-recommand__item">
+                    <a href="/" target="_blank">
+                        <img class="comic-cover lazy" src="[mccms_tpl]book/images/ad2.jpg" alt="AD2">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="in-nav">
+    <i class="icon icon-in-lx"></i>
+    <ul class="clearfix fl">
+    {mccms:type table="type" field="id,name" where="fid=1" limit="13" order="xid asc"}
+		<li class="in-nav__item"><a href="[mccms_url_category_tags_[type:id]]">[type:name]</a></li>
+    {/mccms:type}
+    </ul>
+    
+    <a class="fr" href="[mccms_url_category]">
+		<i class="icon icon-in-class"></i>
+		<span>All Genre</span>
+    </a>
+</div>
+
+   
+<div class="in-sec-wr recent-wr clearfix">
+    <div class="in-sec-update">
+    	<div class="in-sec__head">
+	        <i class="icon icon-in-zf"></i>
+	        <span>Latest Updates</span>
+	        <a class="more" href="[mccms_custom_update]">Next<i class="iconfont icon-ic_vip_switch_r"></i></a>
+      	</div>
+      	<div class="in-sec__box clearfix fl">
+		{mccms:comic table="comic" field="*" limit="10" order="addtime desc"}
+        	<div class="in-comic--type-b">
+	            <div class="cover">
+	            	<a href="[comic:link]" target="_blank"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+	            	<div class="cover__tag">[comic:zdy zd=comic_chapter,name,id,mid]</div>
+	            </div>
+	            <p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+	            <p class="comic__feature">[comic:addtime style=m-d H:i]</p>
+          	</div>
+        {if:[comic:i]==5}</div><div class="in-sec__box clearfix fl mt-20">{end if}
+		{/mccms:comic}
+		</div>
+    </div>
+
+
+
+<div class="in-sec-wr clearfix">
+    <div class="in-rank-box">
+      	<p class="head">
+        	<span>Top Bookmark</span>
+        	<a class="more fr" href="[mccms_custom_fav]">Next<i class="iconfont icon-ic_vip_switch_r"></i></a>
+      	</p>
+      	<div class="rank-list">
+		{mccms:comic table="comic" field="*" limit="10" order="shits desc"}
+        	<div class="rank-item{if:[comic:i]==1} active{end if}">
+	            <div class="item--default">
+	              <span class="num num--[comic:i]">[comic:i]</span>
+	              <span class="comic-name"><a href="[comic:link]" target="_blank">[comic:name]</a></span>
+	              <span class="count">bookmark：[comic:shits]</span>
+	            </div>
+	            <div class="item--detail hide">
+	              <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+	              <p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+	             
+	              <p class="count">bookmark：[comic:shits]</p>
+	              <span class="num num--[comic:i]">[comic:i]</span>
+	            </div>
+          	</div>
+		{/mccms:comic}
+		</div>
+    </div>
+    <div class="in-rank-box">
+		<p class="head">
+			<span>Top Gift
+Received</span>
+			<a class="more fr" href="[mccms_custom_reward]">Next<i class="iconfont icon-ic_vip_switch_r"></i></a>
+		</p>
+      	<div class="rank-list">
+		{mccms:comic table="comic" field="*" limit="10" order="cion desc"}
+        	<div class="rank-item{if:[comic:i]==1} active{end if}">
+	            <div class="item--default">
+	              <span class="num num--[comic:i]">[comic:i]</span>
+	              <span class="comic-name"><a href="[comic:link]" target="_blank">[comic:name]</a></span>
+	              <span class="count">Gift
+Received：[comic:cion wan=1]</span>
+	            </div>
+	            <div class="item--detail hide">
+	              <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+	              <p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+	              
+	              <p class="count">Gift
+Received：[comic:cion wan=1]</p>
+	              <span class="num num--[comic:i]">[comic:i]</span>
+	            </div>
+          	</div>
+		{/mccms:comic}
+		</div>
+    </div>
+    <div class="in-rank-box">
+		<p class="head">
+			<span>Top Power</span>
+			<a class="more fr" href="[mccms_custom_ticket]">Next<i class="iconfont icon-ic_vip_switch_r"></i></a>
+		</p>
+      	<div class="rank-list">
+		{mccms:comic table="comic" field="*" limit="10" order="ticket desc"}
+        	<div class="rank-item{if:[comic:i]==1} active{end if}">
+	            <div class="item--default">
+	              <span class="num num--[comic:i]">[comic:i]</span>
+	              <span class="comic-name"><a href="[comic:link]" target="_blank">[comic:name]</a></span>
+	              <span class="count">Power：[comic:ticket wan=1]</span>
+	            </div>
+	            <div class="item--detail hide">
+	              <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+	              <p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+	             
+	              <p class="count">Power：[comic:ticket wan=1]</p>
+	              <span class="num num--[comic:i]">[comic:i]</span>
+	            </div>
+          	</div>
+		{/mccms:comic}
+		</div>
+    </div>
+</div>
+
+   
+
+
+[mccms_bottom]
+</body>
+</html>

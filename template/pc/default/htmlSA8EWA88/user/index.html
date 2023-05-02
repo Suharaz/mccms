@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_user]
+</head>
+<body class="page-user">
+[mccms_head_user]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_user]
+  <script>$('#left-home').addClass('aside-user__dt--selected');</script>
+  <!-- main-content -->
+  <div class="main-content--aside">
+    <div class="user-info">
+      <!-- avatar -->
+      <div class="user-info__avatar">
+        <img class="j-user-avatar" src="[user:pic]" alt="[user:nichen]" />
+      </div>
+      <!-- 用户信息 -->
+      <div class="user-info__info">
+        <span class="j-user-name user-name"></span>
+          [user:nichen]
+          {if:[user:vip]==1}<i class="icon-vip-type2"></i>{end if}
+          <br/>
+          <sapn class="vip-info">VIP expiration time：<span class="j-user-vip-time">{if:[user:vip]==0} has expired{else}[user:viptime style=Y-m-d]{end if}</span></sapn>
+          <a class="j-buy-btn vip-recharge" data-type="2">{if:[user:vip]==0}Buy {else}Renew{end if}VIP</a>
+      </div>
+      <!-- 用户资金信息 -->
+      <div class="user-info__funds">
+        <div class="user-info__funds--item">
+          <span class="user-info__funds--num j-user-gold">[user:cion]</span><br/>
+          <span class="user-info__funds--text"> [mccms_cionname]</span>
+          <i class="user-info__funds--icon icon-user-yb"></i>
+        </div>
+        <div class="user-info__funds--item">
+          <span class="user-info__funds--num j-user-ticket">[user:ticket]</span><br/>
+          <span class="user-info__funds--text"> Power</span>
+          <i class="user-info__funds--icon icon-user-yp"></i>
+          <a class="j-recharge-ticket-btn hide">Buy</a>
+        </div>
+      </div>
+    </div>
+    <!-- tab -->
+    <div class="main-content__user-tab">
+      <div class="layui-tab layui-tab-brief layui-tab-mkz" lay-filter="user">
+        <ul class="layui-tab-title">
+          <li class="layui-this" data-type="1">[mccms_cionname]</li>
+          <li data-type="1">Power</li>
+          <li data-type="2">VIP</li>
+        </ul>
+        <div class="layui-tab-content tab-con">
+          <!-- [mccms_cionname] -->
+          <div class="layui-tab-item layui-show">
+            <div class="tab-con__balance">
+              balance：<span class="j-user-gold">[user:cion]</span> [mccms_cionname]
+            </div>
+            <a href="[mccms_url_user_buy]" class="tab-con__record">Consume History></a>
+            <div class="tab-con__h3">About Coin</div>
+            <div class="tab-con__gold-flow">
+              <div class="tab-con__gold-flow--item">
+                <div class="tab-con__gold-flow--item-title">
+                  <span>1</span>Buy VIPs
+                </div>
+                <div class="tab-con__gold-flow--item-des">
+                  Enjoy VIP exclusive privileges
+                </div>
+                <div class="tab-con__gold-flow--item-pic1"></div>
+              </div>
+              <div class="tab-con__gold-flow--item">
+                <div class="tab-con__gold-flow--item-title">
+                  <span>2</span>Tip a gift
+                </div>
+                <div class="tab-con__gold-flow--item-des">
+                  support authors/translators/editors
+                </div>
+                <div class="tab-con__gold-flow--item-pic2"></div>
+              </div>
+              <div class="tab-con__gold-flow--item">
+                <div class="tab-con__gold-flow--item-title">
+                  <span>3</span>Buy chapter
+                </div>
+                <div class="tab-con__gold-flow--item-des">
+                  buy premium chapters
+                </div>
+                <div class="tab-con__gold-flow--item-pic3"></div>
+              </div>
+              <div class="tab-con__gold-flow--item">
+                <div class="tab-con__gold-flow--item-title">
+                  <span>4</span>Buy a monthly pass
+                </div>
+                <div class="tab-con__gold-flow--item-des">
+                  recommend your favorite comics
+                </div>
+                <div class="tab-con__gold-flow--item-pic4"></div>
+              </div>
+            </div>
+            <div class="tab-con__h3">What is Coin ？</div>
+            <div class="tab-con__gold-qs">
+              <p>
+                1. [mccms_cionname] is a virtual currency launched by [mccms_name], users can get it by recharging；
+              </p>
+              <p>
+                2.[mccms_cionname] can be used to purchase paid chapters, reward gifts, etc.
+              </p>
+            </div>
+            <div class="j-buy-btn tab-con__btn j-pay-gold">Deposit</div>
+          </div>
+          <!-- [mccms_cionname]-end -->
+          <!-- 月票 -->
+          <div class="layui-tab-item">
+            <div class="tab-con__balance">
+              balance：<span class="j-user-ticket">[user:ticket]</span> Power
+            </div>
+            <a href="[mccms_url_user_buy_ticket]" class="tab-con__record">View usage history></a>
+            <div class="tab-con__h3">About Power？</div>
+            <div class="tab-con__gold-qs">
+              <p>
+                1. Power is a type of energy launched by [mccms_name]
+              </p>
+              <p>
+                2. Power can be obtained by purchasing from [mccms_name]
+              </p>
+              <p>
+                3. Give Power to your favorite comics. That's how to introduce that manga to other readers
+              </p>
+            </div>
+            <div class="j-buy-btn tab-con__btn buy_ticket" data-type='1'>Buy</div>
+          </div>
+          <!-- 月票-end -->
+          <!-- vip -->
+          <div class="layui-tab-item">
+            <div class="tab-con__title">
+                {if:[user:vip]==1}You have activated VIP {else}You are not VIP{end if}
+              </div>
+              
+            <div class="tab-con__h3">VIP privilege</div>
+          
+            <div class="tab-con__gold-qs">
+              <p>
+                1. VIP manga reading for free
+              </p>
+              <p>
+                2. Chapter 20% discount
+              </p>
+              <p>
+                3. Get a free amount of Power
+              </p>
+               <p>
+                3. VIP logo lights up
+              </p>
+               <p>
+                3. more privileges : stay tuned
+              </p>
+            </div>
+            <div class="j-buy-btn tab-con__btn vip-recharge">{if:[user:vip]==1}Renew{else}Buy{end if}</div>
+            </div>
+          <!-- vip-end -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

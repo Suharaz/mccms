@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_author]
+</head>
+<body class="p-comic-info">
+[mccms_head_author]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_author]
+  <!-- main-content -->
+  <div class="user-right">
+    <div class="user-right-top">
+      <h3>author certification</h3>
+      <span class="identify-wait{if:[author:cid] != 1} hide{end if}">under review~Please wait</span>
+      <span class="identify-yes{if:[author:cid] < 3} hide{end if}">examination passed</span>
+      <span class="identify-no{if:[author:cid] != 2} hide{end if}">[author:rz_msg]</span>
+    </div>
+    <div class="identity-box">
+      <div class="caption">
+       Join and get 50% of the revenue from the paid chapters you publish and 100% of the donation you receive
+      </div>
+      {if:[author:cid] == 1 || [author:cid] > 2}
+      <div class="input-box">
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>Scale：</label>
+          <div class="layui-input-block">
+            <a class="subject-on">{if2:[author:rz_type] == 1}personal{else2}group{end if2}<i></i></a>
+          </div>
+        </div>
+        <div class="layui-form-item realname">
+          <label class="layui-form-label"><i>*</i>Name：</label>
+          <div class="layui-input-block">
+            [author:realname]
+          </div>
+        </div>
+        <div class="layui-form-item idcard">
+          <label class="layui-form-label"><i>*</i>Id：</label>
+          <div class="layui-input-block">
+            [author:idcard]
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>QQ：</label>
+          <div class="layui-input-block">
+            [author:qq]
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>Bank name：</label>
+          <div class="layui-input-block">
+            [author:bank]
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>branch name：</label>
+          <div class="layui-input-block">
+            [author:bankcity]
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>bank card account：</label>
+          <div class="layui-input-block">
+            [author:card]
+          </div>
+        </div>
+      </div>
+      {else}
+      <div class="input-box">
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>Scale：</label>
+          <div class="layui-input-block">
+            <a class="person-btn{if2:[author:rz_type] == 1} subject-on{end if2}" data-atype="1">1 person<i></i></a>
+            <a class="company-btn{if2:[author:rz_type] == 2} subject-on{end if2}" data-atype="2">group<i></i></a>
+          </div>
+        </div>
+        <div class="layui-form-item realname">
+          <label class="layui-form-label"><i>*</i>Name：</label>
+          <div class="layui-input-block">
+            <input id="realname" type="text" name="title" required lay-verify="required" placeholder="Enter your pseudonym" autocomplete="off" class="layui-input" value="[author:realname]">
+          </div>
+        </div>
+        <div class="layui-form-item idcard">
+          <label class="layui-form-label"><i>*</i>Phone：</label>
+          <div class="layui-input-block">
+            <input id="idcard" type="text" name="title" required lay-verify="required" placeholder="Enter you Phone" autocomplete="off" class="layui-input" value="[author:idcard]">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>Social Links：</label>
+          <div class="layui-input-block">
+            <input id="qq" type="text" name="title" required lay-verify="required" placeholder="Please enter contact social" autocomplete="off" class="layui-input" value="[author:qq]">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>Bank name：</label>
+          <div class="layui-input-block">
+            <select id="bank" name="bank" lay-verify="required" class="bank">
+              {if2:'[author:bank]'==''}
+              <option value="">--Please select a bank--</option>
+              {else2}
+              <option value="[author:bank]">[author:bank]</option>
+              {end if2}
+              <option value="中国银行">Paypal</option>
+              
+              <option value="浦发银行">other</option>
+            </select>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>Orther：</label>
+          <div class="layui-input-block">
+            <input id="bankcity" type="text" name="bankcity" required lay-verify="required" placeholder="Where do you want to withdraw money?" autocomplete="off" class="layui-input" value="[author:bankcity]">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>Paypal：</label>
+          <div class="layui-input-block">
+            <input id="card" type="text" name="card" required lay-verify="required" placeholder="Enter paypal receiving address" autocomplete="off" class="layui-input" value="[author:card]">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"></label>
+          <div class="layui-input-block">
+            <a id="submit">Send</a>
+          </div>
+        </div>
+      </div>
+      {end if}
+    </div>
+  </div>
+</div>
+[mccms_bottom_author]
+<script type="text/javascript">
+$(function(){
+  $('#left-renzheng').addClass('aside-user--selected');
+  //运营主体切换
+  $('.person-btn').click(function () {
+    $(this).addClass('subject-on').siblings().removeClass('subject-on');
+    $('.realname .layui-form-label').html('<i>*</i>Name：');
+    $('.realname input').attr('placeholder','enter a pseudonym');
+    $('.idcard .layui-form-label').html('<i>*</i>Phone：');
+    $('.idcard input').attr('placeholder','Enterr your phone');
+  });
+  $('.company-btn').click(function () {
+    $(this).addClass('subject-on').siblings().removeClass('subject-on');
+    $('.realname .layui-form-label').html('<i>*</i>Translation team name：');
+    $('.realname input').attr('placeholder','Please enter the Translation name');
+    $('.idcard .layui-form-label').html('<i>*</i>Number：');
+    $('.idcard input').attr('placeholder','Enter the number of members');
+  });
+  $('#submit').click(function () {
+    $('#submit').hide();
+    var data = {};
+    data.type = $('.subject-on').data('atype');
+    data.realname = $('#realname').val();
+    data.idcard = $('#idcard').val();
+    data.qq = $('#qq').val();
+    data.bank = $('#bank').val();
+    data.bankcity = $('#bankcity').val();
+    data.card = $('#card').val();
+    $.post('[mccms_url_author_renzheng_save]', data).done(function (res) {
+      if (res.code == 1) {
+        mccms.layer.msg('Certification submitted successfully，Please wait patiently for review', function() {
+            window.location.reload();
+        });
+      }else{
+        $('#submit').show();
+        mccms.msg(res.msg);
+      }
+    });
+  })
+});
+</script>
+</body>
+</html>

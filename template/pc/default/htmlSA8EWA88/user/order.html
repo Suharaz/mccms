@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_user]
+</head>
+<body class="page-user">
+[mccms_head_user]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_user]
+  <!-- main-content -->
+  <div class="main-content--aside">
+    <!-- title -->
+    <div class="main-content_title">
+      <h3>record query</h3>
+      <div class="main-content__select-date" style="margin-top: 12px;margin-right: 22px;">
+        <span>selection period</span>
+        <select class="j-comment-time comment-select-time" name="comment_select_time">
+          <option value="0">All</option>
+          <option value="7"{if:'[day]' == '7'} selected{end if}>7 day</option>
+          <option value="90"{if:'[day]' == '90'} selected{end if}>90 day</option>
+          <option value="180"{if:'[day]' == '180'} selected{end if}>180 day</option>
+          <option value="365"{if:'[day]' == '365'} selected{end if}>365 day</option>
+        </select>
+      </div>
+    </div>
+    <div class="main-content__logs">
+      <!-- tab-title -->
+      <div class="layui-tab layui-tab-brief layui-tab-mkz" lay-filter="record">
+        <ul class="layui-tab-title">
+          <li{if:[zt]==0} class="layui-this"{end if}><a href="[mccms_url_user_order]">all orders</a></li>
+          <li{if:[zt]==2} class="layui-this"{end if}><a href="[mccms_url_user_order_index_2]">completed order</a></li>
+          <li{if:[zt]==1} class="layui-this"{end if}><a href="[mccms_url_user_order_index_1]">Incomplete orders</a></li>
+        </ul>
+        <div class="layui-tab-content">
+          <div class="layui-tab-item layui-show">
+            <div class="j-vip-table logs-table">
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th width="20%">order number</th>
+                    <th>order details</th>
+                    <th width="10%">channel</th>
+                    <th width="10%">amount($)</th>
+                    <th width="10%">status</th>
+                    <th width="20%">order time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {if:[mccms_pagenum] == 0}<tr><td colspan="6" align="center">No records!</td></tr>{end if}
+                {mccms:order table="order" page="10" order="id desc"}
+                  <tr>
+                    <td>[order:dd]</td>
+                    <td>[order:text]</td>
+                    <td>[order:type]</td>
+                    <td>[order:rmb]</td>
+                    <td>{if:[order:pid]==1}<font color=#080>completed</font>{else}<font color=red>undone</font>{end if}</td>
+                    <td>[order:addtime style=Y-m-d H:i:s]</td>
+                  </tr>
+                {/mccms:order}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- pagination -->
+      <div class="pagination--center{if:[mccms_pagejs] < 2} hide{end if}" id="collection-pagination">
+        <div class="layui-box layui-laypage layui-laypage-mkz">
+          <a href="[mccms_pageup]" class="layui-laypage-prev">&lt;</a>
+          [mccms_pagenum_10]
+          <a href="[mccms_pagedown]" class="layui-laypage-next">&gt;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+[mccms_bottom_user]
+<script>
+$(function(){
+  $('#left-order').addClass('aside-user--selected');
+  $(".comment-select-time").change(function(){
+    var day = $(this).val();
+    window.location.href = '[mccms_url_user_order_index]/[zt]/'+day;
+  });
+});
+</script>
+</body>
+</html>

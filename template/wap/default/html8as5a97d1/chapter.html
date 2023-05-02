@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+  <style>
+  .button-row ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-row li {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  flex-basis: 30%;
+   font-size: 18px;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+  </style>
+</head>
+<body class="p-read">
+    
+    <div class="top-tool-bar">
+    <a class="back-btn" href="[chapter:link]"><i class="ift-back"></i></a>
+    <h1 class="comic-name">[chapter:name]</h1>
+    <a class="home" href="[mccms_path]"><i class="ift-read_home"></i></a>
+  </div>
+    
+  
+  <main id="mainView" class="read-container">
+    <ul class="comic-list" data-type="1" style="min-height:500px;">
+    {if:[chapter:vip] == 0 && [chapter:cion] == 0}
+    {mccms:pic table="comic_pic" where="cid=[chapter_id]" limit="all" order="xid asc"}
+      <li id="pic_[pic:id]" class="comic-page" data-pid="[pic:id]" data-index="[pic:i]">
+        <img src="[pic:img]" alt="[pic:i].jpg">
+      </li>
+    {/mccms:pic}
+    {end if}
+    </ul>
+   
+  </main>
+  <div class="read-end hide">
+   
+    <p class="txt">No next chapter yet└(^o^)┘</p>
+    <p class="txt2">Donate the translator ～</p>
+    <div class="read-end-ctrl">
+      <ul class="clearfix">
+        
+        <li class="ctrl-item J_ticket">
+          <p class="btn ticket"><i class="ift-detail_monthticke"></i></p>
+          <p>Vote</p>
+        </li>
+        <li class="ctrl-item J_gift">
+          <p class="btn gift-btn reward"><i class="ift-detail_reward"></i></p>
+          <p>Donate</p>
+        </li>
+        <li class="ctrl-item">
+          <p class="btn home"><a href="[mccms_path]"><i class="ift-detail_gohome"></i></a></p>
+          <p>Home</p>
+        </li>
+      </ul>
+    </div>
+   
+  
+  </div>
+   <div class="chapter-end hide">
+    <p class="end-txt"><span>Progress：</span>[chapter:name]</p>
+    
+    <div class="end-btns">
+    <div class="button-row">
+  <ul>
+    <li class="prev-chapter prev-btn" _href="[chapter_slink]">Prev</li>
+    
+    <li class="next-chapter next-btn" _href="[chapter_xlink]">Next</li>
+  </ul>
+</div>
+
+    </div>
+  </div>
+ 
+  <div style="display: none" class="gift-box">
+    <div class="m-gift-box">
+      <h2 class="title">
+        <span>Donate </span>
+        <a class="order-g order-g--link" href="[mccms_url_user_pay_index_cion]">Buy [mccms_cionname]</a>
+      </h2>
+      <div class="gift-lst">
+        <ul class="clearfix">
+          {mccms:gift table="gift" where="" limit="8" order="id asc"}
+          <li class="gift-itm" data-id="[gift:id]" data-cion="[gift:cion]">
+            <span class="itm-pic"><img src="[gift:pic]"></span>
+            <p class="itm-title">[gift:name]</p>
+            <p class="itm-pay">[gift:cion][mccms_cionname]</p>
+          </li>
+          {/mccms:gift}
+        </ul>
+      </div>
+      <div class="gift-confirm">
+        <span class="confirm-l"><i class="ift-readercenteryb"></i> Balance：<span class="txt cion-num">[user:cion]</span></span>
+        <span class="btn">Send</span>
+      </div>
+    </div>
+  </div>
+  <div style="display: none" class="ticket-box">
+    <div class="reward-box">
+      <div class="reward-list">
+        <ul class="clearfix">
+          <li class="reward-item select" data-num="1"><i class="ift-monthticket"></i><span>1 Power</span></li>
+          <li class="reward-item" data-num="2"><i class="ift-monthticket"></i><span>2 Power</span></li>
+          <li class="reward-item" data-num="5"><i class="ift-monthticket"></i><span>5 Power</span></li>
+        </ul>
+      </div>
+      <p class="has">Balance：<span class="num ticket-num">[user:ticket] Power </span><a class="buy-ticket" href="[mccms_url_user_pay_index_ticket]">Buy</a></p>
+    </div>
+  </div>
+  
+  <div style="display: none" class="buy-box">
+    <div class="pay-chapter-box">
+      <p class="chapter-name">Buy ：[chapter:name]</p>
+      <p class="price">price ：<span><b class="num">[chapter:cion]</b> [mccms_cionname]</span></p>
+      <p class="u-has">Balance：<b class="cion-num">0</b></p>
+      <span class="buy-btn">Buy it now</span>
+      <span class="buy-btn--charge hide"><a href="[mccms_url_user_pay_index_cion]">Insufficient balance, click to buy coin</a></span>
+      <div class="auto-buy">
+        <label><input class="auto-check" name="autoPuy" type="checkbox">Automatically buy the next chapter</label>
+      </div>
+    </div>
+  </div>
+  <div style="display: none" class="vip-box">
+    <div class="pay-chapter-box">
+      <p class="chapter-name">[chapter:name]</p>
+      <p class="u-has" style="padding:10px 0;color:#f60;">Exclusive to VIP, your level is not enough</p>
+      <span class="buy-btn--charge"><a href="[mccms_url_user_pay_index_vip]">Buy VIP Now</a></span>
+    </div>
+  </div>
+  
+<script>
+var shareArr = [
+    '本宝宝不看别的就看《[chapter:zdy zd=comic,name,mid]》，来[mccms_name]一起围观哦！',
+    '什么？《[chapter:zdy zd=comic,name,mid]》竟是这样的展开？！',
+    '《[chapter:zdy zd=comic,name,mid]》正在[mccms_name]上超神，快来围观啊！',
+    '给《[chapter:zdy zd=comic,name,mid]》打CALL就来[mccms_name]，嗨到飞起啦！'
+  ],shareIndex = Math.floor(Math.random() * 4),shareTxt = shareArr[shareIndex],sharePic = '[chapter:zdy zd=comic,pic,mid]';
+$(function(){
+  setTimeout(function() {
+    comic.read([chapter:mid],[chapter:id],[chapter:vip],[chapter:cion]);
+  },500);
+})
+</script>
+</body>
+</html>

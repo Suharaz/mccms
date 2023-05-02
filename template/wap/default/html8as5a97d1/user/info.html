@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body>
+  <header class="header">
+    <a href="[mccms_url_user]" class="go-back"><i class="ift-back"></i></a>
+    <span>Edit account</span>
+    <a href="[mccms_url_user_info_pass]" style="position: absolute;right: .48rem;color: #ff7830;font-size: 14px;">change Password</a>
+  </header>
+  <main class="main register-main under-header">
+    <form id="registerForm" name="register" method="POST">
+      {if:[user:nameedit] == 1}<div class="label-tips">The user name can be used as the login name and can only be modified once,Please modify carefully</div>{end if}
+      <div class="phone-input info">
+        <div class="input-wrap">
+        	<label>Username：</label>
+        	{if:[user:nameedit] == 1}
+						<input type="text" name="name" class="user-name" autocomplete="off" value="[user:name]" placeholder="The user name can be used as the login name and can only be modified once, please modify carefully"/>
+        	{else}
+          	<input type="text" name="name" class="user-name" value="[user:name]" style="background-color: #f1f1f1;" disabled>
+          {end if}
+        </div>
+      </div>
+      <div class="phone-input info">
+        <div class="input-wrap">
+        	<label>Nick name：</label>
+        	<input class="user-nichen" type="text" name="nichen" value="[user:nichen]" placeholder="Please enter a nickname or pseudonym"/>
+        </div>
+      </div>
+      <div class="phone-input info">
+        <div class="input-wrap">
+        	<label>Social：</label>
+        	<input type="text" class="user-qq" name="qq" value="[user:qq]" placeholder="Social link"/>
+        </div>
+      </div>
+      <div class="phone-input info">
+        <div class="input-wrap">
+        	<label>Mail：</label>
+        	<input type="text" class="user-email" name="email" value="[user:email]" placeholder="Enter your mail"/>
+        </div>
+      </div>
+      <div class="phone-input info">
+        <div class="input-wrap">
+        	<label>Gender：</label>
+        	<div class="sex">
+						<span data-sex="男" {if:'[user:sex]' == '男'} class="on"{end if}>male</span>
+						<span data-sex="女"{if:'[user:sex]' == '女'} class="on"{end if}>female</span>
+						<span data-sex="保密"{if:'[user:sex]' == '保密'} class="on"{end if}> secret</span>
+					</div>
+        	<input  class="user-sex" name="sex" value="[user:sex]" />
+        </div>
+      </div>
+     
+      <div class="phone-input info" style="height:60px;">
+        <div class="input-wrap">
+        	<label>Introduction：</label>
+        	<textarea maxlength="150" name="text" placeholder="Introduce yourself to fans who admire you, no more than 100 words" class="user-text">[user:text]</textarea>
+        </div>
+      </div>
+      <button class="info-btn">Save</button>
+    </form>
+  </main>
+<script src="[mccms_tpl]js/city.js"></script>
+<script>
+$(function(){
+	user.info('[user:province]','[user:city]','[user:area]');
+})
+</script>
+</body>
+</html>

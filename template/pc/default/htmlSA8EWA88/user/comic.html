@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_user]
+</head>
+<body class="page-user">
+[mccms_head_user]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_user]
+  <!-- main-content -->
+  <div class="main-content--aside">
+    <!-- title -->
+    <div class="main-content_title">
+      <h3>Purchase History</h3>
+      <div class="main-content_subtitle">
+        
+        <strong class="j-collection-count">[mccms_pagenum]</strong>
+      </div>
+    </div>
+    <div class="main-content__buy">
+      <!-- comic-list -->
+      <div class="j-collection-list main-content__comic-list">
+        <ul class="user-comic-list--buy">
+          {mccms:comic table="comic_buy" page="10" order="id desc"}
+          <li class="user-comic-item" data-id="[comic:id]">
+            <a class="user-comic-item__cover" href="[comic:link]" target="_blank">
+              <img src="[comic:pic]">
+            </a>
+            <div class="user-comic-item__detail">
+              <div class="user-comic-item--name">
+                <a class="text-overflow" href="[comic:link]" target="_blank">[comic:name]</a>
+              </div>
+              <div class="user-comic-item--text">bought [comic:count] chapters</div>
+                <a class="j-auto-btn user-comic-item__btn auto-on"{if:[comic:auto] == 0} style="display: none;"{end if} data-status="0" data-id="[comic:id]">cancel automatic purchase</a>
+                <a class="j-auto-btn user-comic-item__btn auto-off active"{if:[comic:auto] == 1} style="display: none;"{end if} data-status="1" data-id="[comic:id]">Turn on automatic purchase</a>
+            </div>
+          </li>
+          {/mccms:comic}
+          {if:[mccms_pagenum]==0}
+            <div class="no-buy"></div>
+          {end if}
+        </ul>
+      </div>
+      <div class="pagination--center{if:[mccms_pagejs] < 2} hide{end if}" id="collection-pagination">
+        <div class="layui-box layui-laypage layui-laypage-mkz">
+          <a href="[mccms_pageup]" class="layui-laypage-prev">&lt;</a>
+          [mccms_pagenum_10]
+          <a href="[mccms_pagedown]" class="layui-laypage-next">&gt;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+[mccms_bottom_user]
+<script>
+$(function(){
+  $('#left-comic').addClass('aside-user--selected');
+  buy_init('comic');
+});
+</script>
+</body>
+</html>

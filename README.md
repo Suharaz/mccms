@@ -1,12 +1,12 @@
-# 漫城CMS（mccms）
+# Mancheng CMS (mccms)
 
-#### 介绍
-漫城CMS程序是一套采用CI框架内核进行开发，在PHP+MYSQL环境下运行的完善而强大的快速建站系统。经过近多年的开发经验和技术积累，漫城CMS程序即将成为全网最强漫画+小说系统，在易用性和功能上已经成为同行中的佼佼者。MVC模板分离，内置标签，自定义函数标签接口，前后端分离全部100%开源。为开发者赋能，助力企业发展、国家富强，致力于打造最受欢迎的数字阅读项目
+#### Introduce
+Mancheng CMS program is a complete and powerful rapid site building system developed with CI framework core and running in PHP+MYSQL environment. After years of development experience and technology accumulation, Mancheng CMS program is about to become the most powerful comic + novel system in the whole network, and has become a leader in the industry in terms of ease of use and functions. Separation of MVC templates, built-in tags, custom function tag interfaces, and separation of front and back ends are all 100% open source. Empower developers, help enterprises develop, and make the country prosperous and strong, and are committed to creating the most popular digital reading projects
 
-#### 使用文档
-[**最新文档**](https://www.mccms.cn/doc.html)
+#### Docs
+[**Latest document**](https://www.mccms.cn/doc.html)
 
-#### 运行环境
+#### Operating environment
 
 ```
 Apache/Nginx/IIS
@@ -15,16 +15,16 @@ MySQL 5.5 ~ 5.8
 ```
 
 
-#### 使用协议
-请您在使用(漫城CMS)前仔细阅读如下条款。包括免除或者限制作者责任的免责条款及对用户的权利限制。您的安装使用行为将视为对本《用户许可协议》的接受，并同意接受本《用户许可协议》各项条款的约束。<br>
-1、安装和使用：<br>
-(漫城CMS授权提供给您使用的，您可安装无限制数量副本。 您必须保证在不进行非法活动，不违反所在国家相关政策法规的前提下使用本软件。<br>
-2、协议规定的约束和限制：<br>
-禁止在(漫城CMS)整体或任何部分基础上发展任何派生版本、修改版本或第三方版本用于重新分发销售。
+#### Use Agreement
+Please read the following terms carefully before using (Mancheng CMS). Including disclaimer clauses that exempt or limit the author's liability and restrictions on the user's rights. Your installation and use will be deemed as acceptance of this User License Agreement, and you agree to be bound by the terms of this User License Agreement. <br>
+1. Installation and use:<br>
+(Mancheng CMS is authorized for your use, and you can install an unlimited number of copies. You must ensure that you use this software on the premise of not engaging in illegal activities or violating the relevant policies and regulations of the country where you are located.<br>
+2. Restrictions and restrictions stipulated in the agreement:<br>
+It is prohibited to develop any derivative version, modified version or third-party version based on (Mancheng CMS) whole or any part for redistribution sale.
 
 
-#### 免责声明
-漫城CMS是一款开源漫画小说cms系统。程序的著作权均归作者所有，用户具有自由的使用权。<br> 
-1、您承诺秉着合法、合理的原则使用 漫城CMS系统，不利用 漫城CMS系统 进行任何违法、侵害他人合法利益等恶意的行为，亦不将 漫城CMS系统 运用于任何违反我国法律法规的 Web 平台。<br>
-2、任何单位或个人因下载使用 漫城CMS系统 而产生的任何意外、疏忽、合约毁坏、诽谤、版权或知识产权侵犯及其造成的损失 (包括但不限于直接、间接、附带或衍生的损失等)，本团队不承担任何法律责任。<br>
-3、用户明确并同意本声明条款列举的全部内容，对使用 漫城CMS系统 组件库可能存在的风险和相关后果将完全由用户自行承担，本团队不承担任何法律责任。
+#### Disclaimer
+Mancheng CMS is an open source graphic novel cms system. The copyright of the program belongs to the author, and the user has the right to use it freely. <br>
+1. You promise to use the Mancheng CMS system in accordance with legal and reasonable principles, not to use the Mancheng CMS system to engage in any malicious acts that violate the law or infringe on the legitimate interests of others, and not to use the Mancheng CMS system in any violation of the laws and regulations of our country. web platform. <br>
+2. Any accident, negligence, contract damage, defamation, copyright or intellectual property infringement and the resulting losses (including but not limited to direct, indirect, incidental or derivative losses) arising from the download and use of the Mancheng CMS system by any unit or individual etc.), the team does not assume any legal responsibility. <br>
+3. The user clearly and agrees to all the contents listed in the terms of this statement. The possible risks and related consequences of using the Mancheng CMS system component library will be entirely borne by the user, and the team does not assume any legal responsibility.

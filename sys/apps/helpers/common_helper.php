@@ -1,3 +1,35 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Codespaces
+Marketplace
+Explore
+ 
+@Suharaz 
+chshcms
+/
+mccms
+Public
+Fork your own copy of chshcms/mccms
+Code
+Issues
+7
+Pull requests
+Actions
+Projects
+Security
+Insights
+Beta Try the new code view
+mccms/sys/apps/helpers/common_helper.php /
+@chshcms
+chshcms 修复系统判断SSL
+Latest commit 2d2fc3f last week
+ History
+ 1 contributor
+763 lines (763 sloc)  23.2 KB
+ 
+
 <?php
 /*
 '软件名称：漫城CMS（Mccms）
@@ -67,7 +99,7 @@ function get_rank($did,$zd='cion',$type='comic'){
 	if($row){
 		return $row['rowNo'];
 	}else{
-		return 'NaN';
+		return '100名以外';
 	}
 }
 //截取字符串的函数
@@ -100,9 +132,9 @@ function load_file($file=''){
 	$path = VIEWPATH.$dir.$file;
 	if(!file_exists($path)){
 		if(strpos($_SERVER['HTTP_ACCEPT'],'application/json') !== false){
-			get_json('Missing template file:'.$file,0);
+			get_json('缺少模板文件：'.$file,0);
 		}else{
-			exit('Missing template file:'.$file);
+			exit('缺少模板文件：'.$file);
 		}
 	}
 	return file_get_contents($path);
@@ -492,12 +524,12 @@ function base64decode($string) {
 //以万为单位格式化
 function format_wan($hits = 0){
 	$hits = round($hits,1);
-    if($hits > 999999){
-    	return round($hits/1000000,1)." M";
+    if($hits > 99999999){
+    	return round($hits/100000000,1)." 亿";
     }elseif($hits > 999999){
-    	return round($hits/1000)." K";
+    	return round($hits/10000)." 万";
     }elseif($hits > 9999){
-    	return round($hits/1000,1)." K";
+    	return round($hits/10000,1)." 万";
     }elseif($hits > 999){
     	return round($hits);
     }else{
@@ -518,12 +550,15 @@ function formatsize($size, $dec=2){
 function is_ssl(){
 	if(Web_Ssl_Mode == 1) return TRUE;
     if(!isset($_SERVER)) return FALSE;
-    if(!isset($_SERVER['HTTPS'])) return FALSE;
-    if($_SERVER['HTTPS'] === 1) {  //Apache
-        return TRUE;
-    } elseif ($_SERVER['HTTPS'] === 'on') { //IIS
-        return TRUE;
-    } elseif ($_SERVER['SERVER_PORT'] == 443) { //其他
+    if(isset($_SERVER['HTTPS'])){
+    	if($_SERVER['HTTPS'] === 1) {  //Apache
+        	return TRUE;
+	    } elseif ($_SERVER['HTTPS'] === 'on') { //IIS
+	        return TRUE;
+	    }
+	}elseif(isset($_SERVER['HTTP_X_CLIENT_SCHEME']) && $_SERVER['HTTP_X_CLIENT_SCHEME'] == 'https'){
+		return TRUE;
+    }elseif($_SERVER['SERVER_PORT'] == 443 || $_SERVER['REQUEST_SCHEME'] == 'https'){ //协议头
         return TRUE;
     }
     return FALSE;
@@ -685,13 +720,13 @@ function get_is_type($mid=0,$tid=0){
 //时间格式转换
 function datetime($TimeTime){
 	$limit=time()-$TimeTime;
-	if ($limit <5) {$show_t = 'just';}
-	if ($limit >= 5 and $limit <60) {$show_t = $limit.'s ago';}
-	if ($limit >= 60 and $limit <3600) {$show_t = sprintf("%01.0f",$limit/60).' min ago';}
-	if ($limit >= 3600 and $limit <86400) {$show_t = sprintf("%01.0f",$limit/3600).' hour ago';}
-	if ($limit >= 86400 and $limit <2592000) {$show_t = sprintf("%01.0f",$limit/86400).' day ago';}
-	if ($limit >= 2592000 and $limit <31104000) {$show_t = sprintf("%01.0f",$limit/2592000).' month ago';}
-	if ($limit >= 31104000) {$show_t = ' 1 year ago';}
+	if ($limit <5) {$show_t = '刚刚';}
+	if ($limit >= 5 and $limit <60) {$show_t = $limit.'秒前';}
+	if ($limit >= 60 and $limit <3600) {$show_t = sprintf("%01.0f",$limit/60).'分钟前';}
+	if ($limit >= 3600 and $limit <86400) {$show_t = sprintf("%01.0f",$limit/3600).'小时前';}
+	if ($limit >= 86400 and $limit <2592000) {$show_t = sprintf("%01.0f",$limit/86400).'天前';}
+	if ($limit >= 2592000 and $limit <31104000) {$show_t = sprintf("%01.0f",$limit/2592000).'个月前';}
+	if ($limit >= 31104000) {$show_t = '1年以前';}
 	return $show_t;
 }
 //章节分表，bid小说ID
